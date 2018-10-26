@@ -1,0 +1,55 @@
+<main>
+	<div class="container">
+
+
+		<div class="fixedSpace"></div>
+		<form (ngSubmit)="SaveProduct(pForm)" #pForm ="ngForm" >
+
+
+
+			<h3>{{title}}</h3>
+			<p>You can always add more products later</p>
+
+			<br>
+
+			<div class="row mb-3">
+				<div class="col-md-3"><label>ID</label></div>
+				<div class="col-md-9"><input  class="form-control" type="text" name="id" [(ngModel)]="product.id"  required disabled></div>
+					</div>
+
+				<div class="row mb-3">
+				<div class="col-md-3"><label>Name</label></div>
+				<div class="col-md-9"><input  class="form-control" type="text" name="name" [(ngModel)]="product.name" required></div>
+					</div>
+
+				<div class="row mb-3">
+					<div class="col-md-3"><label>Quantity</label></div>
+				<div class="col-md-9"><input type="text" class="form-control"  name="quantity" [(ngModel)]="product.quantity" required id="productDescription" rows="4" cols="30"></div></div>
+
+
+				<div class="row mb-3">
+				<div class="col-md-3"><label>Price</label></div>
+				<div class="col-md-9"><input class="form-control" [(ngModel)]="product.price"  type="text" name="price"  required></div></div>
+
+
+			<div class="row mb-3">
+			<div class="col-md-3"><label>Image</label></div>
+			<div class="row mb-3"><img src="{{product.path}}" [hidden]="title === 'Add Product'" class="smallImage" /></div>
+				<div class="col-md-3"><input type="hidden" name="imgPath" >
+				<input type="file" name="uploadImage" [hidden]="title === 'Edit Product'" #fileData ></div><br>
+
+			</div>
+
+
+
+				<div class="text-right">
+					<button class="btn btn-primary" >Save</button>&nbsp;
+					<a class="btn btn-danger" routerLink="/admin">Cancel</a>
+				</div>
+
+				<br><br>
+
+			</form>
+	</div>
+
+</main>

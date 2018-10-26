@@ -1,0 +1,63 @@
+<main>
+	<div>
+	<p></p>
+	<div [class.d-none]="emptyID">
+	<h1>Thank you for your Order!</h1>
+	 <h3 >Your Order Number is : {{ orderID }} </h3>
+	<p>You will receive an email confirming your order.</p>
+	<a class="text-info" href="/home">Continue Shopping</a>
+
+
+    </div>
+
+
+		<div class="container">
+
+		<h4 class="mb-4 mt-4">My Orders</h4>
+		<div class="table-responsive">
+
+	<form action="" method="post" >
+	<table id="mytable" class="table border cartTable">
+
+		<thead>
+			<th class="text-center">Customer ID</th>
+			<th class="text-center">Order No</th>
+			<th class="text-center">Shipping Address</th>
+			<th class="text-center">Billing Address</th>
+			<th class="text-center">Order Status</th>
+			<th class="text-center">Date</th>
+			<th>View Orders</th>
+
+		</thead>
+		<tbody>
+
+			<tr *ngFor="let order of orders; let i = index;">
+				<td>{{order.customerId}}</td>
+				<td>{{order.orderNo}}</td>
+				<td>{{order.sAddress}}, {{order.sCity}}, {{order.sState}}-{{order.sZipcode}} </td>
+				<td>{{order.bAddress}}, {{order.bCity}}, {{order.bState}}-{{order.bZipcode}} </td>
+				<td>{{order.status}}</td>
+				<td>{{order.date }}</td>
+                <td>
+				<p data-placement="top" data-toggle="tooltip" title="customerOrders"><a class="btn btn-primary btn-xs btn-orders"
+						name="customerOrders" href=""><i
+							class="fas fa-hand-holding-usd"></i></a>
+				</p>
+				</td>
+
+			</tr>
+
+		</tbody>
+
+	</table>
+	</form>
+
+
+					</div>
+
+		</div>
+
+
+	</div>
+
+	</main>

@@ -1,0 +1,44 @@
+<div class="container-fluid">
+
+		<div class="text-center m-4"><h4 class="f-7 text-uppercase">Select Your Favorite Product</h4></div>
+<!--product Search bar-->
+<div class="row justify-content-center mb-3">
+		<div class="col-md-6">
+		<div id="custom-search-input">
+		<div class="input-group col-md-12">
+
+		  <input id="search-box" class="form-control input-lg" #term />
+
+		<span class="input-group-btn">
+		<button class="btn btn-info btn-lg" (click)="getItems(term.value)" type="button" >
+		<i class="fas fa-search"></i>
+		</button>
+		</span>
+		</div>
+		</div>
+		</div>
+		</div>
+
+<!-- section for all products starts-->
+<div>
+		<p *ngIf="notShow">No Items to Display</p>
+
+		<div class="row mt-2" >
+			<div class="col-md-3" *ngFor="let product of (products | imageFilter:term.value); let i = index">
+
+				<div class="pl-2 pr-2 border text-center itemBox">
+					<div  class="thumbnailImage"><img class="img-fluid" src="{{product.path}}"></div>
+					<h1>{{product.name}}</h1>
+
+					<p class="list-price text-danger textbold "><strong>Price: {{product.price}}</strong></p>
+					<p class="quantity"><strong>Quantity: {{product.quantity}}</strong></p>
+					<button type="button" class="btn btn-sm btn-info mb-2" (click)="showDetails()"> Details </button>
+					&nbsp;<button type="button" class="btn btn-sm btn-info mb-2" (click)="addToCart(product, i)">Add to Cart</button>
+				</div>
+
+
+			</div>
+			<div *ngIf="(products | imageFilter:term.value).length === 0" class="col-md-3 text-muted">No Results Found!</div>
+			</div>
+
+</div>

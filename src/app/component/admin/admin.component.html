@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark " >
+		<div class="collapse navbar-collapse" id="navbarSupportedContent" >
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+			  <a class="nav-link text-white" routerLink="/admin">Admin <span class="sr-only"></span></a>
+			</li>
+			<li class="nav-item dropdown active ">
+					<a class="nav-link text-white" routerLink="/admin/admin-orders-list" >
+						Orders
+					  </a>
+			</li>
+			<li class="nav-item dropdown active ">
+			  <a class="nav-link text-white" routerLink="/admin/add-customer" >
+				Customers
+			  </a>
+			</li>
+
+
+
+		  </ul>
+
+		</div>
+	  </nav>
+
+
+<div class="text-center">
+<h3 class="text-center">Welcome to Admin Panel</h3>
+
+<hr>
+
+
+<!--products table to display-->
+
+<div class="container-fluid">
+	<div class="row">
+<div class="col-md-6">
+<h4 class="mb-4 mt-4 text-center text-uppercase"><strong>Product List</strong></h4>
+<div class="float-left"><a routerLink="add" class="btn btn-primary">Add New Product</a></div>
+<div class="table-responsive">
+
+	<table id="mytable" class="table border cartTable">
+
+		<thead>
+
+			<!--<th><input type="checkbox" id="checkall"/>
+		</th> -->
+			<th class="text-center">ID</th>
+			<th class="text-center">Name</th>
+			<th class="text-center">Quantity</th>
+			<th class="text-center">Price</th>
+			<th class="text-center">Image</th>
+			<th>Edit</th>
+
+		</thead>
+		<tbody>
+
+			<tr *ngFor="let product of products; let i = index;">
+				<td>
+				{{ product.id }}
+				</td>
+				<td>
+					{{ product.name }}
+				</td>
+				<td>
+					{{ product.quantity }}
+				</td>
+				<td>{{ product.price }}</td>
+				<td class="text-center"><img src="{{ product.path }}" class="smallImage" alt="product-Image"></td>
+				<td>
+
+					<p data-placement="top" data-toggle="tooltip" title="Edit">
+						<a class="btn btn-primary btn-xs btn-edit" [routerLink]="['edit', product.id]"><i class="fas fa-edit"></i></a>&nbsp;
+					<a [routerLink]="['delete', product.id]" class="btn btn-danger btn-xs btn-edit"><i class="far fa-trash-alt"></i></a>
+					</p>
+				</td>
+
+			</tr>
+
+		</tbody>
+
+	</table>
+	<div class="clearfix"></div>
+
+
+</div>
+
+</div>
+<!--another roter outlet for child-->
+
+<div class="col-sm-6">
+	<router-outlet></router-outlet>
+</div>
+</div>
+</div>
+
+</div>

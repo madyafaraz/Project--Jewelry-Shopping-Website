@@ -1,0 +1,7 @@
+#headerWrapper {
+    height: 420px;
+    width: 100%;
+    background-image: url('../../../assets/images/banner1.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 420px;
+}

@@ -1,0 +1,94 @@
+<div class="container">
+		<div class="row">
+
+			<div class="col-md-12">
+				<h4 class="mb-4 mt-4">Checkout</h4>
+				<div class="table-responsive">
+<form #userForm ="ngForm" (ngSubmit)="onSubmit(userForm)" novalidate >
+	 <!-- {{ userForm.value | json }}
+	<p>this is orders data</p>
+	{{ orders | json }} -->
+	 <div id="accordion">
+	  <div class="card">
+		<div class="card-header" id="headingOne">
+		  <h5 class="mb-0">
+			<a class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			  Shipping Address
+			</a>
+		  </h5>
+		</div>
+
+		<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+		  <div class="card-body">
+			<input type="text" class="form-control form-control-sm" name="shipAddress" required #ShipAddress="ngModel" [class.is-invalid]="ShipAddress.invalid && ShipAddress.touched" [(ngModel)]="orders.sAddress"  placeholder="street address.." ><br>
+			 <small class="text-danger" [class.d-none]="ShipAddress.valid || ShipAddress.untouched">Address is required</small>
+			<input type="text" class="form-control form-control-sm" name="sCity" required [(ngModel)]="orders.sCity"  placeholder="city.." ><br>
+			<input type="text" class="form-control form-control-sm" name="sZipcode" required #ShipZipcode="ngModel" [(ngModel)]="orders.sZipcode"  placeholder="zipcode.." ><br>
+			<select class="form-control form-control-sm" name="sState" [class.is-invalid]="stateInvalid && sState.touched" (blur)="validateState(sState.value)" (change)="validateState(sState.value)" #sState="ngModel" [(ngModel)]="orders.sState" >
+		       <option value="default" selected="true" >Select State</option>
+		       <option *ngFor="let state of states">{{state}}</option>
+			</select>
+			<small class="text-danger" [class.d-none]="!stateInvalid || sState.untouched">Please select valid state</small>
+		  </div>
+
+		</div>
+	  </div>
+	  <div class="card">
+		<div class="card-header" id="headingTwo">
+		  <h5 class="mb-0">
+			<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			 Billing Address
+			</a>
+		  </h5>
+		</div>
+		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+		  <div class="card-body">
+		   <div id="billingAddress">
+		  <input type="text" class="form-control form-control-sm" name="bAddress" required #bAddress="ngModel"  [ngModel]="orders?.bAddress" (ngModelChange)="orders.bAddress = $event" placeholder="street address.."  autofocus><br>
+			<input type="text" class="form-control form-control-sm" name="bCity" required #bCity="ngModel" [ngModel]="orders?.bCity" (ngModelChange)="orders.bCity = $event"  placeholder="city.." autofocus><br>
+			<input type="text" class="form-control form-control-sm" name="bZipcode" required #bZipcode="ngModel" [ngModel]="orders?.bZipcode" (ngModelChange)="orders.bZipcode = $event"  placeholder="zipcode.." autofocus><br>
+		   <select class="form-control form-control-sm"  name="bState" #bState="ngModel" [ngModel]="orders?.bState" (ngModelChange)="orders.bState = $event">
+				<option value="default" selected="true" >Select State</option>
+				<option *ngFor="let state of states">{{state}}</option>
+	       </select> <br>
+
+	</div>
+		</div>
+		</div>
+	  </div>
+	  <div class="card">
+		<div class="card-header" id="headingThree">
+		  <h5 class="mb-0">
+			<a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			 Payment Options
+			</a>
+		  </h5>
+		</div>
+		<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+		  <div class="card-body">
+		  <input type="text" class="form-control form-control-sm" name="cardName" required #cardName="ngModel" [ngModel]="orders?.cName" (ngModelChange)="orders.cName = $event" placeholder="name on card"  autofocus><br>
+			<input type="text" class="form-control form-control-sm" name="cardNumber" required pattern="^([0-9]{4}[\s-]?){3}([0-9]{4})$" #cardNumber="ngModel" [ngModel]="orders?.cNo" (ngModelChange)="orders.cNo = $event"  placeholder="card number"  autofocus><br>
+			<div *ngIf="cardNumber.errors && (cardNumber.invalid || cardNumber.touched)" >
+               <small class="text-danger" *ngIf="cardNumber.errors.required && cardNumber.touched">Card Number is required</small>
+			   <small class="text-danger" *ngIf="cardNumber.errors.pattern">Credit card number is invalid</small>
+			</div>
+			<input type="text" class="form-control form-control-sm" name="cardExpiration" required #cardExpiration="ngModel" [ngModel]="orders?.cExpiry" (ngModelChange)="orders.cExpiry = $event"  placeholder="MM/YY"  autofocus><br>
+			<input type="text" class="form-control form-control-sm" name="cardCCV" required #cardCVV="ngModel" [ngModel]="orders?.cCCV" (ngModelChange)="orders.cCCV = $event"  placeholder="CVV" autofocus><br>
+
+		</div>
+		</div>
+	  </div>
+	</div>
+
+				 <div class="clearfix"></div>
+	<p></p>
+		<p>
+	<input type="submit" class="btn btn-danger" name="placeOrder" value="Place Order"  [disabled]="!userForm.valid"  >
+
+		</p>
+	</form>
+					</div>
+				</div>
+			</div>
+		</div>
+

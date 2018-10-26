@@ -1,0 +1,23 @@
+<main>
+  <div class="container">
+
+
+	<div class="fixedSpace"></div>
+	<form (ngSubmit)="deleteProduct()">
+
+
+
+		<h3>Delete {{product.name}}</h3>
+		<p>Are you sure you want to perform delete?</p>
+
+		<br>
+		<div class="form-group">
+				<button class="btn btn-danger">OK</button>
+				<a class="btn btn-default" routerLink="/admin">Cancel</a>
+
+			</div>
+
+      </form>
+   </div>
+
+</main>
